@@ -10,27 +10,27 @@ import {
 } from "@/components/ui/sheet"
 import { MenuIcon } from 'lucide-react'
 
-const menuOptions = 
-(<>
-<NewDocumentButton />
-</>)
-
 
 function SideBar() {
+	const menuOptions =
+		(<>
+			<NewDocumentButton />
+		</>)
+		
 	return (
 		<div className='p-2 md:p-5 bg-gray-200 relative'>
 			<div className='md:hidden'>
-			<Sheet>
-				<SheetTrigger>
-					<MenuIcon className='p-2 md:p-5 bg-gray-200 relative' size={40} />
-				</SheetTrigger>
-				<SheetContent side='left'>
-					<SheetHeader>
-						<SheetTitle>Menu</SheetTitle>
-						<div>{menuOptions}</div>
-					</SheetHeader>
-				</SheetContent>
-			</Sheet>
+				<Sheet>
+					<SheetTrigger>
+						<MenuIcon className='p-2 md:p-5 bg-gray-200 relative' size={40} />
+					</SheetTrigger>
+					<SheetContent side='left'>
+						<SheetHeader>
+							<SheetTitle>Menu</SheetTitle>
+							<div>{menuOptions}</div>
+						</SheetHeader>
+					</SheetContent>
+				</Sheet>
 			</div>
 			<div className='hidden md:inline'>
 				{menuOptions}
