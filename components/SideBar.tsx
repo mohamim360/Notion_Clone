@@ -33,7 +33,7 @@ function SideBar() {
 		editor: []
 	})
 	console.log("User:", user);
-console.log("Email:", user?.emailAddresses?.[0]?.toString());
+	console.log("Email:", user?.emailAddresses?.[0]?.toString());
 
 	const [data] = useCollection(
 		user && query(collectionGroup(db, 'rooms'), where('userId', '==', user.emailAddresses[0].emailAddress))
@@ -108,20 +108,32 @@ console.log("Email:", user?.emailAddresses?.[0]?.toString());
 			<NewDocumentButton />
 			<div className='flex flex-col py-4 space-y-4 md:max-w-36'>
 				{/* My Documents */}
-			{groupedData.owner.length === 0 ? (
-				<h2 className='text-gray-500 text-sm font-semibold'>No documents found</h2>
-			) : (
-				<>
-				<h2 className='text-gray-500 text-sm font-semibold'>My documents</h2>
-				{
-					groupedData.owner.map((doc) => (
-					<SidebarOption key={doc.id} href={`/doc/${doc.id}`} id={doc.id}/>
-					))
-				}
-				</>
-			)}
-
+				{groupedData.owner.length === 0 ? (
+					<h2 className='text-gray-500 text-sm font-semibold'>No documents found</h2>
+				) : (
+					<>
+						<h2 className='text-gray-500 text-sm font-semibold'>My documents</h2>
+						{
+							groupedData.owner.map((doc) => (
+								<SidebarOption key={doc.id} href={`/doc/${doc.id}`} id={doc.id} />
+							))
+						}
+					</>
+				)}
 			</div>
+			{/* Shared with me */}
+			{
+				groupedData.editor.length > 0 && (
+					<>
+						<h2 className='text-gray-500 text-sm font-semibold'>Share with me</h2>
+						{
+							groupedData.editor.map((doc) => (
+								<SidebarOption key={doc.id} href={`/doc/${doc.id}`} id={doc.id} />
+							))
+						}
+					</>
+				)
+			}
 		</>)
 
 	return (
