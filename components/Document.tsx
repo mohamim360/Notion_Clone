@@ -6,18 +6,20 @@ import { Button } from "./ui/button"
 import { doc, updateDoc } from "firebase/firestore"
 import { db } from "@/firebase"
 import { useDocumentData } from "react-firebase-hooks/firestore"
+import Editor from "./Editor"
+import useOwner from "@/lib/useOwner"
 
 function Document({ id }: { id: string }) {
 	const [input, setInput] = useState("")
 	const [isUpdating, startTransition] = useTransition();
-	const [ data ] = useDocumentData(doc(db,'documents',id))
-
+	const [data] = useDocumentData(doc(db, 'documents', id))
+	const isOwner = useOwner();
 	useEffect(() => {
-		if(data){
+		if (data) {
 			setInput(data.title)
 		}
 	}, [data])
-	
+
 	const updateTitle = (e: FormEvent) => {
 		e.preventDefault()
 
@@ -40,6 +42,13 @@ function Document({ id }: { id: string }) {
 					/>
 					<Button disabled={isUpdating} type="submit">{isUpdating ? "Updating..." : "Update"}</Button>
 					{/* IF */}
+					{
+						isOwner && (
+							<>
+							<DeleteDocument/>
+							</>
+						)
+					}
 					{/* isOwner && InviteUser,DeleteDocument */}
 				</form>
 			</div>
@@ -49,8 +58,9 @@ function Document({ id }: { id: string }) {
 
 				{/* Avatars */}
 			</div>
-
+			<hr className="pb-10" />
 			{/* collaborative Editor */}
+			<Editor />
 		</div>
 	)
 }
