@@ -14,7 +14,7 @@ function useOwner() {
   );
 
   useEffect(() => {
-    if (usersInRoom?.docs && usersInRoom.docChanges.length > 0) {
+    if (usersInRoom && usersInRoom.docs.length > 0) {
       const owners = usersInRoom.docs.filter(
         (doc) => doc.data().role === "owner"
       );
@@ -25,10 +25,13 @@ function useOwner() {
         )
       ) {
         setIsOwner(true);
+      } else {
+        setIsOwner(false);
       }
     }
-  }, [user, usersInRoom]);
-	return isOwner;
+  }, [user, usersInRoom, room.id]);
+
+  return isOwner;
 }
 
 export default useOwner;

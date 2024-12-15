@@ -1,20 +1,8 @@
-import {
-  App,
-  cert,
-  getApp,
-  getApps,
-  initializeApp,
-  ServiceAccount,
-} from "firebase-admin/app";
+import { App, cert, getApp, getApps, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
-// Parse service key from environment variables
-const serviceKey: ServiceAccount = {
-  projectId: process.env.FIREBASE_PROJECT_ID!,
-
-  privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
-  clientEmail: process.env.FIREBASE_CLIENT_EMAIL!,
-};
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const serviceKey = require("@/service_key.json");
 
 let app: App;
 
