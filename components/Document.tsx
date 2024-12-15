@@ -10,6 +10,7 @@ import Editor from "./Editor"
 import useOwner from "@/lib/useOwner"
 import DeleteDocument from "./DeleteDocument"
 import InviteUser from "./InviteUser"
+import Avatars from "./Avatars"
 
 function Document({ id }: { id: string }) {
 	const [input, setInput] = useState("")
@@ -60,7 +61,7 @@ function Document({ id }: { id: string }) {
 				{/* ManageUsers */}
 
 				{/* Avatars */}
-				<Avaters/>
+				<Avatars/>
 			</div>
 			<hr className="pb-10" />
 			{/* collaborative Editor */}

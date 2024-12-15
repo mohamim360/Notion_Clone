@@ -12,7 +12,7 @@ import "@blocknote/shadcn/style.css"
 import stringToColor from "@/lib/stringToColor"
 type EditorProps = {
 	doc: Y.Doc;
-	provider: any;
+	provider: unknown;
 }
 function BlockNote({ doc, provider }: EditorProps) {
 	const userInfo = useSelf((me) => me.info)

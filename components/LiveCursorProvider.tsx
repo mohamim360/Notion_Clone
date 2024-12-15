@@ -4,6 +4,7 @@ import { useMyPresence, useOthers } from "@liveblocks/react/suspense";
 import FollowPointer from "./FollowPointer";
 
 function LiveCursorProvider({ children }: { children: React.ReactNode }) {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [myPresence, updateMyPresence] = useMyPresence();  //A Liveblocks hook that allows a user to set and update their presence data (e.g., cursor position).
 	const others = useOthers(); //A Liveblocks hook that retrieves presence data of other connected users.
 
